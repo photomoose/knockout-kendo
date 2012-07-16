@@ -185,6 +185,16 @@ var extendAndRedraw = function(prop) {
         }
     }
 };
+
+//private utility function generator for charts
+var extendAndRedrawChart = function(prop) {
+    return function(value) {
+        if (value) {
+            ko.utils.extend(this.options[prop], value);
+            this.redraw();
+        }
+    }
+};
 //library is in a closure, use this private variable to reduce size of minified file
 var createBinding = ko.kendo.bindingFactory.createBinding.bind(ko.kendo.bindingFactory);
 
@@ -554,7 +564,8 @@ createBinding({
     watch: {
         data: function(value) {
             ko.kendo.setDataSource(this, value);
-        }
+        },
+        categoryAxis: extendAndRedrawChart('categoryAxis')
     }
 });
 createBinding({

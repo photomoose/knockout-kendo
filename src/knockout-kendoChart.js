@@ -3,6 +3,7 @@ createBinding({
     watch: {
         data: function(value) {
             ko.kendo.setDataSource(this, value);
-        }
+        },
+        categoryAxis: extendAndRedrawChart('categoryAxis')
     }
 });

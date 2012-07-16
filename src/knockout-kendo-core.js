@@ -184,3 +184,13 @@ var extendAndRedraw = function(prop) {
         }
     }
 };
+
+//private utility function generator for charts
+var extendAndRedrawChart = function(prop) {
+    return function(value) {
+        if (value) {
+            ko.utils.extend(this.options[prop], value);
+            this.redraw();
+        }
+    }
+};
